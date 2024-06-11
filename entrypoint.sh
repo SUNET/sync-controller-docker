@@ -16,9 +16,10 @@ while true; do
       status_endpoint="batch/v1/namespaces/${namespace}/jobs/${jobname}/status"
       status=$(${curl} ${api}/${status_endpoint} | jq -rc '.status')
       if [[ -z ${status} ]]; then
-        ${curl} ${api}/${jobs_endpoint} \  -X POST \
-                  -H 'Content-Type: application/yaml' \
-                  -d "---
+        ${curl} ${api}/${jobs_endpoint} \
+          -X POST \
+          -H 'Content-Type: application/yaml' \
+          -d "---
 apiVersion: batch/v1
 kind: Job
 metadata:
